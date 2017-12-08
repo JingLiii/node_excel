@@ -4,9 +4,11 @@
   "description": "This is a node server for create excel",
   "main": "app.js",
   "dependencies": {
+    "axios": "^0.17.1",
     "express": "^4.16.2",
     "node-xlsx": "^0.11.2",
-    "nodemon": "^1.12.5"
+    "nodemon": "^1.12.5",
+    "qiniu": "^7.1.1"
   },
   "devDependencies": {},
   "scripts": {
