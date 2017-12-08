@@ -1,0 +1,25 @@
+{
+  "name": "node_excel",
+  "version": "1.0.0",
+  "description": "This is a node server for create excel",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "node-xlsx": "^0.11.2",
+    "nodemon": "^1.12.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JingLiii/node_excel.git"
+  },
+  "author": "zhangrh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JingLiii/node_excel/issues"
+  },
+  "homepage": "https://github.com/JingLiii/node_excel#readme"
+}
