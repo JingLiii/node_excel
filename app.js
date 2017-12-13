@@ -1,16 +1,14 @@
+const path = require('path')
+path.dirname(__dirname)
+
 const express = require('express')
-const wirteExcle = require('./wiriteExcle')
+const http = require('http')
+const router = require('./routes/index')
+
 const app = express()
-app.post('/', (req, res) => {
-  res.send('Hello World')
+
+app.use(router)
+
+http.createServer(app).listen(3000, () => {
+  console.log(`listen in server on port 3000`)
 })
-
-const server = app.listen(3000, () => {
-  const host = server.address().address
-  const port = server.address().port
-  // console.log('Example app listening at http://:', host, port)
-  console.log('Example app listening at http://%s:%s', host, port);
-})
-
-
-
