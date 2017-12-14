@@ -9,6 +9,6 @@ const app = express()
 
 app.use(router)
 
-http.createServer(app).listen(3000, () => {
-  console.log(`listen in server on port 3000`)
+http.createServer(app).listen(80, () => {
+  console.log(`listen in server on port 80`)
 })
