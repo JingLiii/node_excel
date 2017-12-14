@@ -14,9 +14,11 @@ fs.readdir(controllersPath, (err, files) => {
   })
 })
 
+
+
 // 测试服务
 router.route('/excle').all((req, res, next) => {
-  controllersArr['excle']()
+  controllersArr['excle'](req, res)
 })
 
 module.exports = router
