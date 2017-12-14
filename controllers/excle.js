@@ -60,8 +60,8 @@ module.exports = (req, res) => {
       if (err) {
         throw err
       }
-      res.end(simpleStringify(req))
-      // res.end(JSON.stringify(uploadInfo))
+      // res.end(simpleStringify(req))
+      res.end(JSON.stringify(uploadInfo))
     })
   })
 }
