@@ -14,9 +14,10 @@ fs.readdir(controllersPath, (err, files) => {
   })
 })
 
+
 // 测试服务
 router.route('/').all((req, res, next) => {
-  res.end('Hello , you in ali\'s centos ')
+  res.json('Hi, this is ali\'s server ');
 })
 
 // excle接口

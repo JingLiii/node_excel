@@ -42,6 +42,7 @@ module.exports = (filePath, cb) => {
     if (respInfo.statusCode == 200) {
       cb(null, respBody)
     } else {
+      cb(null, respInfo)
       console.log(respInfo.statusCode);
       console.log(respBody);
     }

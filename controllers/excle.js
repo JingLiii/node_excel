@@ -1,67 +1,35 @@
 const writeExcle = require('../models/wiriteExcle')
 const UpFile = require('../models/qnUpload')
-
-
-
-
-function simpleStringify (object){
-  var simpleObject = {};
-  for (var prop in object ){
-      if (!object.hasOwnProperty(prop)){
-          continue;
-      }
-      if (typeof(object[prop]) == 'object'){
-          continue;
-      }
-      if (typeof(object[prop]) == 'function'){
-          continue;
-      }
-      simpleObject[prop] = object[prop];
-  }
-  return JSON.stringify(simpleObject); // returns cleaned up JSON
-};
-
-
-
-function censor(censor) {
-  var i = 0;
-
-  return function(key, value) {
-    if(i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value) 
-      return '[Circular]'; 
-
-    if(i >= 29) // seems to be a harded maximum of 30 serialized objects?
-      return '[Unknown]';
-
-    ++i; // so we know we aren't using the original object anymore
-
-    return value;  
-  }
-}
-
-
+const downLoad = require('../models/qnDownload')
+//   filename; string,
+//   sheetname: string,
+//   jsondata: Array > array, array
 
 module.exports = (req, res) => {
-  let fileName = "test"
-  let sheetName = "mySheet"
-  const jsonData = [
-    [1, 2, 3, 4],
-    [1, 2, 3],
-    [1, 2, 4],
-    [1, 2, 3],
-    [1, 2, 3],
-    [1, 2, 3],
-    [1, 2, 3],
-    [1, 2, 3],
-  ];
+  let reqData = req.body
+  if (!reqData.filename) {
+    res.end('参数有误')
+    return
+  }
+  if (!reqData.sheetname) {
+    res.end('参数有误')
+    return
+  }
+  
+  if (!reqData.jsondata) {
+    res.end('参数有误')
+    return
+  }
+  
 
-  writeExcle(fileName, sheetName, jsonData, (filePath) => {
+  writeExcle(reqData.filename, reqData.sheetname, JSON.parse(reqData.jsondata), (filePath) => {
     UpFile(filePath, (err, uploadInfo) => {
       if (err) {
         throw err
       }
-      // res.end(simpleStringify(req))
-      res.end(JSON.stringify(uploadInfo))
+      downLoad(uploadInfo.key, (fileUrl) => {
+        res.json(fileUrl)
+      })
     })
   })
 }
